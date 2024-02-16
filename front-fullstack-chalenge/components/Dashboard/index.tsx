@@ -5,7 +5,7 @@ import Pokemon from '../../public/assets/pik_inicial.png'
 import ComponentWithIcon from '../TitleWithIcon';
 import { isAuthenticated } from '../auth';
 import api from '../api';
-import ModalHunterPokemon from '../ModalHunterPokemon';
+import ModalHunterPokemon from '../ModalHunterPokemon/indext';
 import { Card, Container, Wrapper, CardWrapper, FilterContainer, FilterSelect, Modal } from './styles';
 
 const Dashboard: React.FC = () => {
@@ -21,12 +21,14 @@ const Dashboard: React.FC = () => {
         try {
             if (!isAuthenticated()) {
                 router.push('/login');
+            } else {
+                const hunterId = localStorage.getItem('hunterId');
+                const res: any = api.get(`/v1/fullStackChalenge/hunter?hunterId=${hunterId}`).then((response) => {
+                    setHunter(response.data);
+                });
+                console.log('login', res.data)
             }
-            const hunterId = localStorage.getItem('hunterId');
-            const res: any = api.get(`/v1/fullStackChalenge/hunter?hunterId=${hunterId}`).then((response) => {
-                setHunter(response.data);
-            });
-            console.log('login', res.data)
+
         } catch (error) {
             console.error('Error', error);
         }
@@ -82,6 +84,8 @@ const Dashboard: React.FC = () => {
         setModalOpen(true);
     }
     const handleLogout = () => {
+        localStorage.removeItem('@chalenge-Token');
+        localStorage.removeItem('hunterId');
         router.push('/login');
     };
 
@@ -92,7 +96,7 @@ const Dashboard: React.FC = () => {
             </div>
             <Container>
 
-                {filterCards().length === 0 ? (
+                {hunter.pokemons.length === 0 ? (
                     <>
                         <div className='messageNoPoke'>
                             <h1>Bem vindo! Você não tem nenhum Pokémon!</h1>

@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const Wrapper = styled.div`
+  margin: auto;
+`
+
 export const Container = styled.div`
   display: flex;
   margin: 3rem auto;
@@ -26,6 +30,25 @@ export const Card = styled.div`
   align-items: center;
   border-radius: 10px;
   padding:1rem;
+  .logoutButton {
+        position: fixed;
+        top: 1.25rem;
+        right: 1.25rem;
+        background-color: blue;
+        border: 1px solid #000000;
+        color: white;
+        font-weight: 600;
+        border: none;
+        box-shadow: none;
+        font-size: 16px;
+        padding: 1rem 2rem;
+        border-radius: 6px;
+        cursor: pointer;
+}
+    .logoutButton:hover {
+        background-color: #000000;
+        color: #ffffff;
+    }
 `
 
 export const DataPersonal = styled.div``

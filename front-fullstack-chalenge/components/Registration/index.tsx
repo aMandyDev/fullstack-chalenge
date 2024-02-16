@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import { Container, Form, Label, Input, DataPersonal, Address, Card } from './styles';
-import { RegistrationFormData } from '../../types/registrationFormData'
 import router from 'next/router';
 import api from '../api';
 
-interface RegistrationFormProps {
-    onSubmit: (data: RegistrationFormData) => void;
-}
-const RegistrationForm: React.FC<RegistrationFormProps> = ({ onSubmit }) => {
+const RegistrationForm: React.FC = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -43,10 +39,14 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onSubmit }) => {
             alert(error.data.message);
         }
     };
+    const handleLogout = () => {
+        router.push('/login');
+    };
 
     return (
         <Container>
             <Card>
+                <button className="logoutButton" onClick={handleLogout}>Voltar</button>
                 <h1>Cadastre-se</h1>
                 <Form>
                     <DataPersonal>

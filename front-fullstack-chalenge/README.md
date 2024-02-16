@@ -17,29 +17,38 @@ O layout foi criado priorizando a experiência do usuário em dispositivos móve
 
 Aqui estão algumas capturas de tela das telas do projeto:
 
-1. ![Imagem 1](/front-fullstack-chalenge/docsProject/ProjetoLayout1.png)
+1. ![Imagem 1](./docsProject/ProjetoLayout1.png)
 
-2. ![Imagem 2](/front-fullstack-chalenge/docsProject/ProjetoLayout2.png)
+2. ![Imagem 2](./docsProject/ProjetoLayout2.png)
 
 
 ## Como Utilizar
 
 1. Clone este repositório para o seu ambiente de desenvolvimento.
 2. Abra o projeto em seu editor de código preferido.
-3. Execute o projeto da pasta front-fulltack-chalenge em um servidor local ou emulador para visualizar as telas.
+3. Abra o projeto da pasta front-fulltack-chalenge em um servidor local ou emulador para visualizar as telas.
 4. Instale o node modules.
 5. Experimente as funcionalidades de login, cadastro e jogo de caça de Pokémons.
 
+## Tecnologias
 - NextJs
 - Styled Components
 - Typescript
 
-## Link do Front
+## Link Front
 https://fullstack-challenge-c788d5a65abf.herokuapp.com/loginv
 
 ## Link do Back
 https://bff-ms-fullstack-778f0df92c20.herokuapp.com/api/bffmsfullstackchalenge/docs
 
+
+## Run Application
+
+How to run the application
+
+```
+npm run dev
+```
 ## Autor
 
 Amanda Conceição Gomes
