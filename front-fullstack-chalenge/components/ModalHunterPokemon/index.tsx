@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { isAuthenticated } from '../auth';
 import router from 'next/router';
 import api from '../api';
-import ComponentWithIcon from '../TitleWithIcon';
-import { Wrapper, Container, Modal } from "./styles";
+import { Modal, ModalButtons, Header } from "./styles";
 import Image from "next/image";
 
 
 const ModalHunterPokemon: React.FC = () => {
     const [pokemon, setPokemon] = useState<any>({});
+    const [modalOpen, setModalOpen] = useState<boolean>(true);
 
     useEffect(() => {
         try {
@@ -18,13 +18,15 @@ const ModalHunterPokemon: React.FC = () => {
             const hunterId = localStorage.getItem('hunterId')
             const res: any = api.get(`/v1/fullStackChalenge/pokemon/hunt?hunterId=${hunterId}`).then((response) => {
                 setPokemon(response.data);
-            }).catch((err) => {
-                alert(err.data.message);
-            });
+            })
+                .catch((err) => {
+                    let errorMessage = err.message || 'Ocorreu um erro ao buscar o Pokémon';
+                    alert(errorMessage);
+                });
         } catch (error: any) {
-            alert(error.data.message);
+            let errorMessage = error.message || 'Ocorreu um erro ao buscar o Pokémon';
+            alert(errorMessage);
         }
-
     }, []);
 
     const handlePokemonHunt = () => {
@@ -37,17 +39,23 @@ const ModalHunterPokemon: React.FC = () => {
     const handleCaptured = () => {
         const hunterId = localStorage.getItem('hunterId')
         const res: any = api.post(`/v1/fullStackChalenge/pokemon/register?hunterId=${hunterId}`, pokemon).then((response) => {
-            //router.push('/dashboard');
             router.reload();
         });
     }
+    const handleClose = () => {
+        setModalOpen(false);
+    }
 
     return (
+        modalOpen &&
         <Modal>
             <div className="modalContent">
-                <ComponentWithIcon title={pokemon?.name} />
+                <Header>
+                    <span onClick={() => handleClose()}>Fechar</span>
+                    <h1>{pokemon.name} </h1>
+                </Header>
                 <Image
-                    src={pokemon?.image}
+                    src={pokemon.image}
                     alt={pokemon.name}
                     width={250}
                     height={280}
@@ -72,8 +80,10 @@ const ModalHunterPokemon: React.FC = () => {
                         ))}
                     </div>
                 </div>
-                <button onClick={() => handlePokemonHunt()}>Caçar outro Pokemon</button>
-                <button onClick={() => handleCaptured()}>Capturar</button>
+                <ModalButtons>
+                    <button className="capture" onClick={() => handleCaptured()}>Capturar</button>
+                    <button onClick={() => handlePokemonHunt()}>Caçar outro Pokemon</button>
+                </ModalButtons>
             </div>
         </Modal>
     )

@@ -1,0 +1,45 @@
+# Teste de Login, Cadastro e Caça de Pokémons
+
+Este projeto consiste em um teste de implementação de funcionalidades de login, cadastro e um mini jogo de caça de Pokémons. 
+
+## Planejamento Inicial
+
+O projeto foi planejado com as seguintes telas:
+
+1. Tela de Login
+2. Tela de Cadastro
+3. Tela de Jogo de Caça de Pokémons
+
+### Layout Responsivo
+
+O layout foi criado priorizando a experiência do usuário em dispositivos móveis.Porém, a responsividade foi desenvolvida para Tablet e Desktope tenham a mesma experiência.
+## Imagens Layout Inicial
+
+Aqui estão algumas capturas de tela das telas do projeto:
+
+1. ![Imagem 1](/front-fullstack-chalenge/docsProject/ProjetoLayout1.png)
+
+2. ![Imagem 2](/front-fullstack-chalenge/docsProject/ProjetoLayout2.png)
+
+
+## Como Utilizar
+
+1. Clone este repositório para o seu ambiente de desenvolvimento.
+2. Abra o projeto em seu editor de código preferido.
+3. Execute o projeto da pasta front-fulltack-chalenge em um servidor local ou emulador para visualizar as telas.
+4. Instale o node modules.
+5. Experimente as funcionalidades de login, cadastro e jogo de caça de Pokémons.
+
+- NextJs
+- Styled Components
+- Typescript
+
+## Link do Front
+https://fullstack-challenge-c788d5a65abf.herokuapp.com/loginv
+
+## Link do Back
+https://bff-ms-fullstack-778f0df92c20.herokuapp.com/api/bffmsfullstackchalenge/docs
+
+## Autor
+
+Amanda Conceição Gomes

@@ -19,7 +19,8 @@ const LoginForm: React.FC = () => {
                 login(res.data.token);
                 router.push('/dashboard');
             }
-        } catch (error) {
+        } catch (error: any) {
+            alert(error.response.data.message)
             console.error('Login error:', error);
         }
     };

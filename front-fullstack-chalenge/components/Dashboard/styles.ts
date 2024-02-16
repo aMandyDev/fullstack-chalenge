@@ -1,31 +1,5 @@
 import styled from 'styled-components';
 
-import typePokemonData from '../../types/typePokemon.json'; // Importe o arquivo typePokemon.json
-
-// Função para obter a cor com base no tipo de Pokémon
-const getTypeColor = (type: string): string | undefined => {
-    const pokemonType = typePokemonData.find(pokemon => pokemon.name === type);
-    return pokemonType ? pokemonType.color : undefined;
-};
-
-interface InitialsAvatarProps {
-    size: number;
-}
-
-export const InitialsAvatar = styled.div<InitialsAvatarProps>`
-    background-color: #007bff;
-    color: #fff;
-    width: ${props => props.size}px;
-    height: ${props => props.size}px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-    font-size: ${props => props.size * 0.4}px;
-    padding: 1rem;
-`;
-
 export const Wrapper = styled.div`
     padding: 1rem;
     .typePoke { 
@@ -43,6 +17,32 @@ export const Wrapper = styled.div`
                 background-color: aquamarine;
             }
         }
+    .containerButton{
+        display: flex;
+        justify-content: end;
+    }
+        
+    .logoutButton {
+        position: relative;
+        justify-content: end;
+        top: 1.25rem;
+        right: 1.25rem;
+        background-color: blue;
+        border: 1px solid #000000;
+        color: white;
+        font-weight: 600;
+        border: none;
+        box-shadow: none;
+        font-size: 16px;
+        padding: 1rem 2rem;
+        border-radius: 6px;
+        cursor: pointer;
+        margin: 1rem;
+}
+    .logoutButton:hover {
+        background-color: #000000;
+        color: #ffffff;
+    }
 `;
 
 export const Container = styled.div`
@@ -58,16 +58,14 @@ export const Container = styled.div`
             padding-top: 10rem;
             padding-bottom: 5rem;
             margin: auto;
+            font-weight: 600;
         }
         img {
             display: flex;
             margin: auto;
         }
     }
-    .avatarName {
-        display: flex;
-        justify-content: end;       
-    }
+
     h1 {
         margin-top: 1rem;
         text-align: center;
@@ -82,21 +80,13 @@ export const Container = styled.div`
         align-items: center;
         color: white;
         font-weight: 600;
-        margin: 1rem auto;
-        padding: 0.7rem;
         border: none;
         box-shadow: none;
         font-size: 16px;
+        margin: 1rem auto;
+        padding: 0.7rem;
        
     }
-    @media (min-width: 768px) {
-        h1 {
-            text-align: left;
-        }
-    }
-
-    
-
 `;
 
 export const FilterContainer = styled.div`
@@ -151,21 +141,7 @@ export const Card = styled.label`
         flex-direction: column;
         align-items: center;
     }
-    .types-card {
-
-    }
 `;
-
-export const UserAvatar = styled.input`
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background-color: aqua;
-    `;
-
-export const NoPokemon = styled.input`
-
-`
 
 export const Modal = styled.div`
     .modalContent {
@@ -182,9 +158,12 @@ export const Modal = styled.div`
         padding: 1.25rem;
         border-radius: 5px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-        .inputName{
-            padding: 0.5rem;
-        }
+        .buttonName{
+            display: flex;
+            .inputName{
+                padding: 0.5rem;
+            }
+        }        
 
         button {
             display: flex;

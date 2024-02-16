@@ -1,18 +1,22 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-    padding: 1rem;
-`;
-
-export const Container = styled.div`
-    width: auto;
-    height: auto;
-    margin: 1rem;
-    @media (min-width: 768px) {
-        
+export const Header = styled.div`
+    span {
+        display: flex;
+        justify-content: center;
+        padding: 0.5rem;
+        background-color: red;
+        border-radius: 6px;
+        margin-bottom: 1rem;
+        color: white;
+        font-weight: 600;
     }
-`;
-
+`
+export const ModalButtons = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+`
 export const Modal = styled.div`
     .modalContent {
         display: flex;
@@ -43,7 +47,9 @@ export const Modal = styled.div`
         border: none;
         box-shadow: none;
         }
-        
+        .capture{
+        background-color: blue;
+        }
         .all-info {
             background-color: #3399FF;
             display: flex;
@@ -61,7 +67,6 @@ export const Modal = styled.div`
               font-weight: 600;
               margin: 0.2rem;
             }
-          
         }
         .types, 
         .abilities{

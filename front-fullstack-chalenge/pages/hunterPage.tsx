@@ -1,5 +1,5 @@
 import React from 'react';
-import ModalHunterPokemon from '../components/ModalHunterPokemon/indext'
+import ModalHunterPokemon from '../components/ModalHunterPokemon'
 
 const HunterPage: React.FC = () => {
     return (

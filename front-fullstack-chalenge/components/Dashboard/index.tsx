@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import router from 'next/router';
 import Image from 'next/image';
-import { Card, Container, Wrapper, InitialsAvatar, CardWrapper, FilterContainer, FilterSelect, NoPokemon, Modal } from './styles';
 import Pokemon from '../../public/assets/pik_inicial.png'
 import ComponentWithIcon from '../TitleWithIcon';
 import { isAuthenticated } from '../auth';
-import router from 'next/router';
 import api from '../api';
-import ModalHunterPokemon from '../ModalHunterPokemon/indext';
+import ModalHunterPokemon from '../ModalHunterPokemon';
+import { Card, Container, Wrapper, CardWrapper, FilterContainer, FilterSelect, Modal } from './styles';
 
 const Dashboard: React.FC = () => {
-    const initials = "AM";
     const [filter, setFilter] = useState('');
     const [myTypes, setMyTypes] = useState<string[]>([]);
     const [selectedPokemon, setSelectedPokemon] = useState<any>(null);
@@ -23,7 +22,8 @@ const Dashboard: React.FC = () => {
             if (!isAuthenticated()) {
                 router.push('/login');
             }
-            const res: any = api.get('/v1/fullStackChalenge/hunter?hunterId=65ce7622348cf068993bf352').then((response) => {
+            const hunterId = localStorage.getItem('hunterId');
+            const res: any = api.get(`/v1/fullStackChalenge/hunter?hunterId=${hunterId}`).then((response) => {
                 setHunter(response.data);
             });
             console.log('login', res.data)
@@ -35,7 +35,7 @@ const Dashboard: React.FC = () => {
             return typesPokeHunter?.indexOf(item) === index;
         });
         setMyTypes(filterTypes);
-    }, []);
+    }, [hunter]);
 
     const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setFilter(e.target.value);
@@ -78,20 +78,24 @@ const Dashboard: React.FC = () => {
         router.reload();
     };
 
-
     const handlePokemonHunt = () => {
         setModalOpen(true);
     }
+    const handleLogout = () => {
+        router.push('/login');
+    };
+
     return (
         <Wrapper>
+            <div className='containerButton'>
+                <button className="logoutButton" onClick={handleLogout}>Sair</button>
+            </div>
             <Container>
+
                 {filterCards().length === 0 ? (
                     <>
                         <div className='messageNoPoke'>
-                            <div className='avatarName'>
-                                <InitialsAvatar size={70}>{initials}</InitialsAvatar>
-                            </div>
-                            <h1>Você não tem nenhum Pokémon!</h1>
+                            <h1>Bem vindo! Você não tem nenhum Pokémon!</h1>
                             <Image
                                 src={Pokemon}
                                 alt="pokemon"
@@ -102,9 +106,6 @@ const Dashboard: React.FC = () => {
                     </>
                 ) : (
                     <>
-                        <div className='avatarName'>
-                            <InitialsAvatar size={70}>{initials}</InitialsAvatar>
-                        </div>
                         <h1>Meus Pokémons</h1>
                         <FilterContainer>
                             <p>Organizar Por:</p>
@@ -155,11 +156,11 @@ const Dashboard: React.FC = () => {
                         <span onClick={() => setOpenEdit(true)}>
                             <ComponentWithIcon title={capitalizeFirstLetter(selectedPokemon.name)} />
                             {
-                                openEdit && <div>
+                                openEdit &&
+                                <div className='buttonName'>
                                     <input className='inputName' value={newNamePokemon} onChange={(e) => setNewNamePokemon(e.target.value)} />
                                     <span onClick={() => handleSaveName(newNamePokemon, selectedPokemon)}>Salvar</span>
                                 </div>
-
                             }
 
                         </span>
