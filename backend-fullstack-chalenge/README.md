@@ -1,16 +1,18 @@
 # Project Title
 
 ## Description
+
 Serviço REST API do sistema pokémon
 
 ## Tech Stack
 
 ## Tecnologias
 
- 1. [NodeJs 20x](https://nodejs.org/dist/v14.17.0/)
- 2. [HapiJS](https://hapijs.com/)
+1.  [NodeJs 20x](https://nodejs.org/dist/v14.17.0/)
+2.  [HapiJS](https://hapijs.com/)
 
- ## Big Picture
+## Big Picture
+
 ![Alt](microservice.png)
 
 ## Dependencies
@@ -21,9 +23,10 @@ Serviço REST API do sistema pokémon
 2.  MongoDB
 
 cURL login
+
 ```
 curl -X 'POST' \
-  'https://bff-ms-fullstack-778f0df92c20.herokuapp.com/api/bffmsfullstackchalenge/v1/fullStackChalenge/authentication' \
+  'https://bff-fullstack-chalenge-8a02420026da.herokuapp.com/api/bffmsfullstackchalenge/v1/fullStackChalenge/authentication' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -33,17 +36,19 @@ curl -X 'POST' \
 ```
 
 cURL - Consulta Caçcador por Id
+
 ```
 curl -X 'GET' \
-  'https://bff-ms-fullstack-778f0df92c20.herokuapp.com/api/bffmsfullstackchalenge/v1/fullStackChalenge/hunter?hunterId=65ce7622348cf068993bf352' \
+  'https://bff-fullstack-chalenge-8a02420026da.herokuapp.com/api/bffmsfullstackchalenge/v1/fullStackChalenge/hunter?hunterId=65ce7622348cf068993bf352' \
   -H 'accept: application/json' \
   -H 'authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjY1Y2U3NjIyMzQ4Y2YwNjg5OTNiZjM1MiIsImVtYWlsIjoiYW1hbmRhQGdtYWlsLmNvbSIsImlhdCI6MTcwODExMTIxMzQxNCwiZXhwIjoxNzA4MTk3NjEzNDE0fQ.Gq9h5WAHDujQ4cfCXY9kGRCrltKYi7gmp6-vJ42Xmig'
 ```
 
 cURL - Caça pokemon
+
 ```
 curl -X 'GET' \
-  'https://bff-ms-fullstack-778f0df92c20.herokuapp.com/api/bffmsfullstackchalenge/v1/fullStackChalenge/pokemon/hunt?hunterId=65ce7622348cf068993bf352' \
+  'https://bff-fullstack-chalenge-8a02420026da.herokuapp.com/api/bffmsfullstackchalenge/v1/fullStackChalenge/pokemon/hunt?hunterId=65ce7622348cf068993bf352' \
   -H 'accept: application/json' \
   -H 'authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjY1Y2U3NjIyMzQ4Y2YwNjg5OTNiZjM1MiIsImVtYWlsIjoiYW1hbmRhQGdtYWlsLmNvbSIsImlhdCI6MTcwODExMTIxMzQxNCwiZXhwIjoxNzA4MTk3NjEzNDE0fQ.Gq9h5WAHDujQ4cfCXY9kGRCrltKYi7gmp6-vJ42Xmig'
 
@@ -53,7 +58,7 @@ cURL - Cadastra pokemon Capturado
 
 ```
 curl -X 'POST' \
-  'https://bff-ms-fullstack-778f0df92c20.herokuapp.com/api/bffmsfullstackchalenge/v1/fullStackChalenge/pokemon/register?hunterId=65ce7622348cf068993bf352' \
+  'https://bff-fullstack-chalenge-8a02420026da.herokuapp.com/api/bffmsfullstackchalenge/v1/fullStackChalenge/pokemon/register?hunterId=65ce7622348cf068993bf352' \
   -H 'accept: application/json' \
   -H 'authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjY1Y2U3NjIyMzQ4Y2YwNjg5OTNiZjM1MiIsImVtYWlsIjoiYW1hbmRhQGdtYWlsLmNvbSIsImlhdCI6MTcwODExMTIxMzQxNCwiZXhwIjoxNzA4MTk3NjEzNDE0fQ.Gq9h5WAHDujQ4cfCXY9kGRCrltKYi7gmp6-vJ42Xmig' \
   -H 'Content-Type: application/json' \
