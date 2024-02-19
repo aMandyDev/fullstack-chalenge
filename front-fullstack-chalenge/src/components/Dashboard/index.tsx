@@ -33,6 +33,14 @@ const Dashboard: React.FC = () => {
   const [openEdit, setOpenEdit] = useState<any>(false)
   const [newNamePokemon, setNewNamePokemon] = useState('')
 
+  const handleFilter = ({ pokemons }) => {
+    const typesPokeHunter = pokemons.map((pokemon: any) => pokemon.types).flat()
+    const filterTypes = typesPokeHunter.filter((item: any, index: any) => {
+      return typesPokeHunter?.indexOf(item) === index
+    })
+    setMyTypes(filterTypes)
+  }
+
   useEffect(() => {
     try {
       if (!isAuthenticated()) {
@@ -43,19 +51,14 @@ const Dashboard: React.FC = () => {
           .get(`/v1/fullStackChalenge/hunter?hunterId=${hunterId}`)
           .then(response => {
             setHunter(response.data)
+            handleFilter(response.data)
           })
+
         console.log('login', res.data)
       }
     } catch (error) {
       console.error('Error', error)
     }
-    const typesPokeHunter = hunter.pokemons
-      .map((pokemon: any) => pokemon.types)
-      .flat()
-    const filterTypes = typesPokeHunter.filter((item: any, index: any) => {
-      return typesPokeHunter?.indexOf(item) === index
-    })
-    setMyTypes(filterTypes)
   }, [])
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -65,9 +68,9 @@ const Dashboard: React.FC = () => {
   const filterCards = () => {
     switch (filter) {
       case 'A-Z':
-        return [...hunter.pokemons].sort((a: any, b: any) =>
-          a.name > b.name ? 1 : -1
-        )
+        return hunter.pokemons
+          .slice()
+          .sort((a: any, b: any) => (a.name > b.name ? 1 : -1))
       case 'Data de captura':
         return hunter.pokemons.sort(
           (a: any, b: any) =>
@@ -164,21 +167,23 @@ const Dashboard: React.FC = () => {
                 <div key={index} onClick={() => handleClick(pokemon)}>
                   <Card>
                     <Image
-                      src={pokemon.image}
+                      src={pokemon?.image}
                       alt={`pokemon ${index + 1}`}
                       width={200}
                       height={250}
                     />
                     <div>
-                      <h3>{captalize(pokemon.name)}</h3>
+                      <h3>{captalize(pokemon?.name)}</h3>
                       <TypePoke>
                         <p className="typePoke">
-                          {pokemon.types.map((type: string, index: number) => (
-                            <span className="types-card" key={index}>
-                              {captalize(type)}
-                              {index < pokemon.types.length - 1}
-                            </span>
-                          ))}
+                          {pokemon?.types?.map(
+                            (type: string, index: number) => (
+                              <span className="types-card" key={index}>
+                                {captalize(type)}
+                                {index < pokemon?.types?.length - 1}
+                              </span>
+                            )
+                          )}
                         </p>
                       </TypePoke>
                     </div>
